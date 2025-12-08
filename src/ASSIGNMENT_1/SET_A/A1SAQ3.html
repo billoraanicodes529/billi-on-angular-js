@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="validationApp">
+<head>
+    <title>SET_A_Q3</title>
+    <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="validationController">
+        <h2>User Validation</h2>
+
+        <label for="userName">Username: </label>
+        <input type="text" id="userName" ng-model="userName" ng-blur="validateUsername()" required><br><br>
+
+        <label for="password">Password" </label>
+        <input type="password" id="password" ng-model="password" required><br><br>
+
+        <button ng-click="validatePassword()">Validate</button>
+
+        <p>{{ validationMessage }}</p>
+    </div>
+    
+    <script>
+        let app = angular.module("validationApp", []);
+
+        app.controller("validationController", function($scope) {
+            $scope.validationMessage = '';
+
+            $scope.validateUsername = function() {
+                if (!$scope.userName) {
+                    $scope.validationMessage = "Please Enter Username.";
+                } else if ($scope.userName.length < 3) {
+                    $scope.validationMessage = "Username is too short.";
+                } else {
+                    $scope.validationMessage = "Valid Username";
+                }
+            };
+
+            $scope.validatePassword = function() {
+                if ($scope.password.length < 8) {
+                    $scope.validationMessage = "Password should be minimum 8 characters.";
+                } else {
+                    $scope.validationMessage = "Password is valid";
+                }
+            };
+        });
+    </script>
+</body>
+</html>

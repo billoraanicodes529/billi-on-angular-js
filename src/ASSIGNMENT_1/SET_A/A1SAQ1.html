@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SET_A_Q2</title>
+    <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <p>Current Time is: <strong><u>{{ timeNow }}</u></strong></p>
+    </div>
+
+    <script>
+        let app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope, $interval) {
+            $scope.timeNow = new Date().toLocaleTimeString();
+            
+            $interval(() => {
+                $scope.timeNow = new Date().toLocaleTimeString();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

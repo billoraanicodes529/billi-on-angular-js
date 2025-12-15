@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>ng-click Directive Example</title>
+    <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script>
+</head>
+<body ng-controller="clickController">
+    <h1>ng-click Directive Example</h1>
+    
+    <button ng-click="showAlert()">Click Me!</button>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("clickController", function($scope) {
+            $scope.showAlert = function() {
+                alert("You Have Clicked Me!");
+            }
+        });
+    </script>
+    
+</body>
+</html>

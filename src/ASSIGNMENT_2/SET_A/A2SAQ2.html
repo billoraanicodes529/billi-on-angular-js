@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Game List</title>
+    <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script>
+</head>
+<body ng-controller="gameController">
+    <h1>List Of Games</h1>
+    
+    <div ng-init='games = ["Football", "Basketball", "Tennis", "Cricket", "Swimming"]'>
+        <ul>
+            <li ng-repeat="game in games" ng-bind="game"></li>
+        </ul>
+    </div>
+
+    <button ng-click="showGames()">Show Games</button>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("gameController", function($scope) {
+            $scope.showGames = function() {
+                alert("List Of Games: " + $scope.games);
+            }
+        });
+    </script>
+</body>
+</html>

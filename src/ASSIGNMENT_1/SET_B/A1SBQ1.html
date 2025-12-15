@@ -1,0 +1,37 @@
+<html ng-app="myApp">
+<head>
+    <title>Angular Suggestion Example</title>
+    <!-- <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js" defer></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="myCtrl" >
+        <h2>Suggestion Example</h2>
+
+        <label for="search">Search: </label>
+        <input type="text" id="search" ng-model="searchText" ng-change="getSuggestions()" autocomplete="off">
+        <ul>
+            <li ng-repeat="suggestion in suggestions">{{ suggestion }}</li>
+        </ul>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope) {
+            $scope.suggestions = [];
+            
+            var allSuggestions = ["Apple", "Banana", "Mango", "Orange", 
+            "Pineapple", "Grapes", "Strawberry", "Watermelon"];
+
+            $scope.getSuggestions = function() {
+                $scope.suggestions = allSuggestions.filter(function(suggestion) {
+                    return suggestion.toLowerCase().indexOf($scope.searchText.toLowerCase()) === 0;
+                });
+            }
+
+        });
+    </script>
+
+    
+</body>
+</html>

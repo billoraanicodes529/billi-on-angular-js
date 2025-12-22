@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Student Percentage Calculator</title>
+    <!-- Using CDN for AngularJS -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl" ng-init="name=''; rollno=''; java=''; uiux='' nodejs=''; percentage=''; calculated=false;">
+
+    <h1>Student Details</h1>
+
+    <div>
+        <label for="studName">Student Name: </label>
+        <input type="text" id="studName" ng-model="name">
+    </div><br>
+
+    <div>
+        <label for="studRollno">Student Roll No: </label>
+        <!-- Using type="text" or "number" is fine, but ensure data handling supports it -->
+        <input type="number" id="studRollno" ng-model="rollno">
+    </div><br>
+
+    <div>
+        <label for="studSubject1">Student Java Score (Max 100): </label>
+        <input type="number" id="studSubject1" ng-model="java" min="0" max="100">
+    </div><br>
+
+    <div>
+        <label for="studSubject2">Student NodeJS Score (Max 100): </label>
+        <input type="number" id="studSubject2" ng-model="nodejs" min="0" max="100">
+    </div><br>
+
+    <div>
+        <label for="studSubject3">Student UI/UX Score (Max 100): </label>
+        <input type="number" id="studSubject3" ng-model="uiux" min="0" max="100">
+    </div><br>
+
+    <button ng-click="calculatePercentage()">Calculate Percentage</button><br>
+
+    <p>
+        <strong>Percentage: </strong>
+        <!-- Revised display logic: Show percentage if calculated, otherwise show a prompt -->
+        {{ calculated ? percentage + ' %' : 'Please enter scores and click Calculate.' }}
+    </p>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller('myCtrl', function ($scope) {
+            // Initialize calculated flag to false
+            $scope.calculated = false;
+
+            $scope.calculatePercentage = function () {
+                // Ensure inputs are treated as numbers, defaulting to 0 if empty or invalid
+                var javaScore = parseFloat($scope.java) || 0;
+                var uiuxScore = parseFloat($scope.uiux) || 0;
+                var nodejsScore = parseFloat($scope.nodejs) || 0;
+
+                var total = javaScore + uiuxScore + nodejsScore;
+                
+                // Assuming total maximum marks are 300 (3 subjects * 100)
+                $scope.percentage = (total / 300 * 100).toFixed(2);
+                
+                // Set flag to true so the display updates
+                $scope.calculated = true;
+            }
+        });
+    </script>
+</body>
+</html>

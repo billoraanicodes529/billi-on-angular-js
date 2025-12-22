@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myApp">
 <head>
     <title>Angular JS</title>
     <style>
@@ -13,6 +13,7 @@
             color: white;
         }
     </style>
+    <!-- <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
 <body style="text-align: center;">
@@ -22,5 +23,20 @@
 
     <button change-color class="red">Click To Change</button>
     
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.directive("changeColor", function () {
+            return {
+                restrict: "A",
+                link: function (scope, element) {
+                    element.on("click", function () {
+                        element.toggleClass("green");
+                        element.toggleClass("red");
+                    });
+                }
+            };
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title></title>
+    <!-- <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script> -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl" ng-init="name=''; rollno=''; java=''; uiux='' nodejs=''; percentage='';">
+
+    <h1>Student Details</h1>
+
+    <div>
+        <label for="studName">Student Name: </label>
+        <input type="text" id="studName" ng-model="name">
+    </div><br>
+
+    <div>
+        <label for="studRollno">Student Roll No: </label>
+        <input type="number" id="studRollno" ng-model="rollno">
+    </div><br>
+
+    <div>
+        <label for="studSubject1">Student Java Subject: </label>
+        <input type="number" id="studSubject1" ng-model="java">
+    </div><br>
+
+    <div>
+        <label for="studSubject2">Student NodeJS Subject: </label>
+        <input type="number" id="studSubject2" ng-model="nodejs">
+    </div><br>
+
+    <div>
+        <label for="studSubject3">Student UI/UX Subject: </label>
+        <input type="number" id="studSubject3" ng-model="uiux">
+    </div><br>
+
+    <button ng-click="calculatePercentage()">Calculate Percentage</button><br>
+
+    <p>
+        <strong>Percentage: </strong>
+        {{ percentage !== '' ? percentage + ' %' + 'Not Calculated' }}
+    </p>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.calculatePercentage = function () {
+                var total = $scope.java + $scope.uiux + $scope.nodejs;
+                $scope.percentage = (total / (3 * 100) * 100).toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html>

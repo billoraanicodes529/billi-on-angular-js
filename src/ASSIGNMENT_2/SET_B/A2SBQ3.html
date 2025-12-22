@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Product Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="productController" ng-init="name=''; quantity=0; rate=0; totalPrice=''">
+
+    <h1>Product Details</h1>
+
+    <div>
+        <label for="name">Product Name: </label>
+        <input type="text" id="name" ng-model="name">
+    </div><br>
+
+    <div>
+        <label for="quantity">Product Quantity: </label>
+        <input type="number" id="quantity" ng-model="quantity">
+    </div><br>
+
+    <div>
+        <label for="rate">Product Rate: </label>
+        <input type="number" id="rate" ng-model="rate">
+    </div><br>
+
+    <button ng-click="calculateTotalPrice()">Calculate Total Price</button>
+
+    <p>
+        <strong>Total Price: </strong>
+        {{ totalPrice !== '' ? totalPrice : 'Not Calculated' }}
+    </p>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("productController", function ($scope) {
+            $scope.calculateTotalPrice = function () {
+                $scope.totalPrice = $scope.quantity * $scope.rate;
+            };
+        });
+    </script>
+    
+</body>
+</html>

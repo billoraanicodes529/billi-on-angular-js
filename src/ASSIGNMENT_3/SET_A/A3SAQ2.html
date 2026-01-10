@@ -8,6 +8,13 @@
 <head>
     <title>Student Report Card</title>
     <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script>
+    <style>
+        table, tr, td, th {
+            border: 2px solid;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body ng-controller="studentController">
     <h1>Student Report Card</h1>
@@ -120,7 +127,7 @@
                 parseInt($scope.marks.m5, 10);
 
                 $scope.total = total;
-                $scope,percentage = (total / 500) * 100;
+                $scope.percentage = (total / 500) * 100;
 
                 if ($scope.percentage >= 90) {
                     $scope.grade = "A";

@@ -1,0 +1,63 @@
+<!-- 
+    Using angular js display the student details who are live in pune in Table format
+    (using ng-repeat directive, use Array to store data, use filter).
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Student information City Sort</title>
+    <!-- <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body ng-controller="StudentController">
+    <h1>Student information</h1>
+
+    <table>
+        <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Grade</th>
+            <th>Address</th>
+        </tr>
+
+        <tr ng-repeat="student in students | filter: { city: 'Pune'}">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.grade }}</td>
+            <td>{{ student.city }}</td>
+        </tr>
+    </table>
+
+    <script>
+        var app = angular.module("myApp", []);
+        
+        app.controller("StudentController", function($scope) {
+            $scope.students = [
+                { name: "John Doe", age: 21, grade: "A", city: "Pune" },
+                { name: "Jane Smith", age: 17, grade: "B", city: "Kolhapur" },
+                { name: "Mike Johnson", age: 19, grade: "A+", city: "Mumbai" },
+                { name: "Emily Davis", age: 18, grade: "B+", city: "Pune" },
+                { name: "David Anderson", age: 17, grade: "A-", city: "Pune" },
+                { name: "Sarah Wilson", age: 19, grade: "B-", city: "Nashik" },
+                { name: "Michael Brown", age: 18, grade: "A", city: "Aurangabad" },
+                { name: "Jessica Taylor", age: 17, grade: "A+", city: "Pune" },
+                { name: "Daniel Miller", age: 19, grade: "B+", city: "" },
+                { name: "Amy Moore", age: 18, grade: "A-", city: "Solapur" }
+            ];
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- 
+    Write an AngularJS program that show the use of filters to filter a list of items based
+    on user input
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Filter Items</title>
+    <!-- <script src="/home/tybcs210/Documents/T.Y.B.Sc.CS PRACTICALS SEM 6/Angular_JS_SEM_6/angular.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="FilterController">
+    <h1>Filter Items</h1>
+
+    <label for="searchText">Search Item: </label>
+    <input type="text" id="searchText" ng-model="searchText">
+
+    <ul>
+        <li ng-repeat="item in items | filter:searchText">{{ item }}</li>
+    </ul>
+
+    <script>
+        var app = angular.module("myApp", []);
+        
+        app.controller("FilterController", function($scope) {
+            $scope.items = ["Apple", "Banana", "Mango", "Orange", "Pineapple", "Grapes", "Strawberry", 
+            "Watermelon", "Papaya", "Kiwi"];
+        });
+    </script>
+</body>
+</html>

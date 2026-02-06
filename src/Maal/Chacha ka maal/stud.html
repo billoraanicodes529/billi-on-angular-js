@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Student Details</title>
+    <script src="angular.min.js"></script>
+</head>
+
+
+
+
+<body ng-controller="StudentController"
+      ng-init="name=''; rollNo=''; JAVA=0; NodeJS=0; UI/UX=0; percentage=''">
+       <h1>Student Details</h1>
+
+ 
+    <div>
+        <label>Student Name:</label>
+        <input type="text" ng-model="name">
+    </div>
+    
+    <div>
+        <label>Student RollNo:</label>
+        <input type="text" ng-model="rollNo">
+    </div>
+    
+     <div>
+        <label>JAVA Marks:</label>
+        <input type="number" ng-model="JAVA">
+    </div>
+    
+     <div>
+        <label>NodeJS Marks:</label>
+        <input type="number" ng-model="NodeJS">
+    </div>
+    
+      <div>
+        <label>UI/UX Marks:</label>
+        <input type="number" ng-model="UI/UX">
+    </div>
+    
+     <br>
+
+    <button ng-click="calculatePercentage()">Calculate Percentage</button>
+
+     <p>
+        <strong>Percentage:</strong>
+        {{ percentage !== '' ? percentage + ' %' : 'Not calculated' }}
+    </p>
+    
+     <script>
+        angular.module('myApp', [])
+        .controller('StudentController', function ($scope) {
+
+            $scope.calculatePercentage = function () {
+                var total = $scope.JAVA + $scope.NodeJS + $scope.UI/UX;
+                $scope.percentage = (total / 3).toFixed(2);
+            };
+
+        });
+    </script>
+    </body>
+</html>
+    
+    
+    

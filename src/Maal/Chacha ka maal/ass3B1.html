@@ -1,0 +1,75 @@
+<html> 
+ <head> 
+ <script src ="angular.min.js">
+ </script> 
+ </head> 
+ <body> 
+ <h2>AngularJS eTickect Application</h2> 
+ <div ng-app = "mainApp" ng-controller = "eTickectController"> 
+ <table border = "1"> 
+ <tr> <td>Enter name:</td> 
+ <td ><input type = "text" ng-model = "name"></td> </tr> 
+ <tr> <td>Enter Address : </td><td> 
+ <input type = "text" ng-model = "address"> 
+</td> </tr> 
+<tr> <td>Enter Contact Number:</td> 
+ <td><input type = "number" ng-model = "contact"></td> </tr> 
+ <tr> <td>Enter Source : </td> 
+ <td> <select ng-model="source">
+<option value=" ">
+<option value="Pune">Pune 
+<option value="Mumbai">Mumbai
+<option value="Pimpri">Pimpri </select> </td> 
+</tr> 
+<tr> <td>Enter Destination : </td> 
+<td> <select ng-model="destination">
+ <option value=" ">
+ <option value="Thane">Thane
+ <option value="Mulshi">Mulshi
+ <option value="Satara">Satara </select> </td> 
+ </tr> 
+ <tr> <td>Enter Journey Date : </td>
+ <td> <input type = "date" ng-model = "jDate"> 
+</td> </tr> 
+<tr> <td>Enter Pasenger Names: </td> 
+ <td> <input type = "textarea" ng-model = "p1"> </td> 
+</tr> 
+<tr><td>Gender</td>
+<td><input type =radio name = p ng-model="gender" value="male">Male
+<input type =radio name = p ng-model="gender" value="female">Female</td>
+</tr>
+</table> 
+
+<table border = 2 align = center>
+<tr><td colspan = 3 align = center><font size = 5 color = red > Bus Ticket Reservation</font></td></tr>
+<tr> <td>Name : {{name}}</td>
+<td>Address : {{address}}</td>
+<td>Contact : {{contact}}</td> </tr>
+<tr> <td>Source : {{source}}</td>
+<td>Destination : {{destination}}</td>
+<td>Journey Date : {{jDate}}</td> </tr>
+ <tr> <td> Pasengers1 : </td>
+ <td>{{p1}}</td>
+<td>Gender:{{gender}}</td>
+ </tr>  
+</table>
+</div>
+<script>
+var mainApp = 
+angular.module("mainApp", []);
+mainApp.controller('eTickectController', function($scope) {
+
+    
+      
+$scope.name = "Robert"
+$scope.address = "Pimpri"
+$scope.contact = "9028813474"
+$scope.source = "Pune"
+$scope.destination = "Bidar"
+$scope.jDate = "10/10/2020"
+
+
+
+
+});
+</script>

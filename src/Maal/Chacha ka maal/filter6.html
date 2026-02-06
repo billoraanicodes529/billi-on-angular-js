@@ -1,0 +1,50 @@
+<!--Using angular js display the Employee details order by salary in Table format (using ng-repeat directive, use Array to store data, use filter)-->
+
+<!DOCTYPE html>
+<html ng-app="employeeApp">
+<head>
+    <title>Employee - orderBy Filter </title>
+    <script src="angular.min.js"></script>
+    
+</head>
+<body>
+    <div ng-controller="EmployeeController">
+        <h2>Employee Details</h2>
+        
+        <label>Search by Name:</label>
+        <input type="text" ng-model="searchName">
+        
+        <table border=1>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy:'salary' | filter:searchName">
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>${{ employee.salary }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+var app = angular.module('employeeApp', []);
+
+app.controller('EmployeeController', function($scope) {
+    $scope.employees = [
+        { name: 'John Doe', position: 'Manager', salary: 60000 },
+        { name: 'Jane Smith', position: 'Developer', salary: 55000 },
+        { name: 'Mike Johnson', position: 'Designer', salary: 50000 },
+        { name: 'Lisa Williams', position: 'Analyst', salary: 52000 },
+        { name: 'David Brown', position: 'Tester', salary: 48000 }
+    ];
+});
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,117 @@
+<!--Create Simple AngularJS Script to Print Student Marks card with grade using controller-->
+<html> 
+ <head> 
+ <script src = "angular.min.js"> </script> 
+ </head> 
+ <body> 
+ <h2>AngularJS Sample Application</h2> 
+ <div ng-app = "mainApp" ng-controller ="studentController"> 
+ <table border = "1"> 
+ <tr> <td>Enter first name:</td> 
+ <td colspan = 2 ><input type = "text" ng-model ="student.firstName"></td> 
+ </tr> 
+ <tr> <td>Enter last name: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="student.lastName"></td> 
+ </tr> 
+<tr>
+    <td colspan="3"><h3>Enter Marks of Below Subjects</h3></td>
+</tr>
+<tr> <td>Chemestry: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m1"></td> 
+ </tr> 
+
+ <tr> <td>Physics: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m2"></td> 
+ </tr> 
+
+ <tr> <td>Maths: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m3"></td> 
+ </tr> 
+
+ <tr> <td>English: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m4"></td> 
+ </tr> 
+
+<tr> <td>Hindi: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m5"></td> 
+ </tr> 
+</table>
+
+<button ng-click="add()">Display</button>
+<br><br>
+<table border=2>
+<tr>
+    <td colspan="3"><h3>Marks Card of Student</h3></td>
+</tr>
+
+ <tr> <td>Name: </td> <td colspan =2>{{student.firstName+" "+student.lastName}}</td></tr> 
+ <tr> <td rowspan = 9>Subject:</td> 
+ <th>Subject Name</th> 
+ <th>Marks</th> 
+ <tr> 
+ <td>{{"Chemestry"}}</td>
+ <td>{{marks.m1}}</td> 
+ </tr> 
+ <tr> 
+ <td>{{"Physics"}}</td>
+ <td>{{marks.m2}}</td> 
+ </tr> 
+ <tr> 
+ <td>{{"Maths"}}</td>
+ <td>{{marks.m3}}</td> 
+ </tr> 
+ <tr> 
+ <td>{{"English"}}</td>
+ <td>{{marks.m4}}</td> 
+ </tr> 
+  <tr> 
+ <td>{{"Hindi"}}</td>
+ <td>{{marks.m5}}</td> 
+ </tr>
+ <tr> <td> Total </td> <td>{{total}}</td> 
+    <tr> <td> Percentage </td> <td>{{percentage}}</td> 
+        <tr> <td> Grade</td> <td ng-if="grade">{{grade}}</td> 
+    
+        
+</table> 
+ </div>
+ <script> 
+ var mainApp = 
+angular.module("mainApp", []); 
+ 
+mainApp.controller('studentController',function($scope) { 
+ $scope.student = {firstName:"Rahul",lastName:"Patil"};
+ 
+  $scope.marks={m1:45,m2:56,m3:67,m4:89,m5:34};
+
+ $scope.add=function(){
+$scope.marks.m1=parseInt($scope.marks.m1);
+$scope.marks.m2=parseInt($scope.marks.m2);
+$scope.marks.m3=parseInt($scope.marks.m3);
+$scope.marks.m4=parseInt($scope.marks.m4);
+$scope.marks.m5=parseInt($scope.marks.m5);
+
+ $scope.grade = '';
+
+$scope.total=$scope.marks.m1+$scope.marks.m2+$scope.marks.m3+$scope.marks.m4+$scope.marks.m5;
+
+$scope.percentage=($scope.total/500)*100;
+if ($scope.percentage >= 90) {
+            $scope.grade = 'A';
+        } else if ($scope.percentage >= 80) {
+            $scope.grade= 'B';
+        } else if ($scope.percentage >= 70) {
+            $scope.grade = 'C';
+        } else if ($scope.percentage >= 50) {
+            $scope.grade = 'D';
+        } else {
+            $scope.grade = 'F';
+        }
+ };
+  
+});
+
+ 
+ </script> 
+</body>
+</html>

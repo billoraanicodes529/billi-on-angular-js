@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Departmental Store Products</title>
+  <script src="angular.min.js"></script>
+</head>
+<body>
+  <div ng-controller="ProductController">
+    <h1>Departmental Store Products</h1>
+     <table>
+      <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+       <tr ng-repeat="product in products">
+        <td>{{ product.srNo }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+      </tr>
+      </table>
+  </div>
+
+  <script>
+    var app = angular.module('myApp', []);
+     app.controller('ProductController', function($scope) {
+      $scope.products = [
+        {
+          srNo: 1,
+          name: 'Product 1',
+          price: 10.99,
+          quantity: 5
+        },
+        {
+          srNo: 2,
+          name: 'Product 2',
+          price: 19.99,
+          quantity: 3
+        },
+        {
+          srNo: 3,
+          name: 'Product 3',
+          price: 7.99,
+          quantity: 10
+        },
+        // Add more products here...
+      ];
+    });
+    </script>
+</body>
+</html>

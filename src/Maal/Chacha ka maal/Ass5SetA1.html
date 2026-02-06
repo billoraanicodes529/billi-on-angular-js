@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Registration Form</title>
+  <script src="angular.min.js"></script>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body ng-controller="RegistrationController">
+
+  <h1>Registration Form</h1>
+
+  <form name="registrationForm" ng-submit="submitForm()" novalidate>
+
+    <label>Name:</label>
+    <input type="text" name="name" ng-model="name" required>
+    <span class="error" ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">
+      Name is required.
+    </span>
+    <br>
+
+    <label>Email:</label>
+    <input type="email" name="email" ng-model="email" required>
+    <span class="error" ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">
+      Email is required.
+    </span>
+    <span class="error" ng-show="registrationForm.email.$dirty && registrationForm.email.$error.email">
+      Invalid email format.
+    </span>
+    <br>
+
+    <label>Password:</label>
+    <input type="password" name="password" ng-model="password" required>
+    <span class="error" ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">
+      Password is required.
+    </span>
+    <br>
+
+    <button type="submit">Register</button>
+
+  </form>
+
+  <script>
+    angular.module('myApp', [])
+      .controller('RegistrationController', function($scope) {
+        $scope.user = {};
+
+        $scope.submitForm = function() {
+          if ($scope.registrationForm.$valid) {
+            alert('Registration successful!');
+            //$scope.user = {};
+            //$scope.registrationForm.$setPristine();
+            //$scope.registrationForm.$setUntouched();
+          } else {
+            alert('Please fill in all required fields correctly.');
+          }
+        };
+      });
+  </script>
+
+</body>
+</html>

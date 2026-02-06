@@ -1,0 +1,68 @@
+<!--Using Angular JS Create a SPA to take the information of a customer for booking Ticket 
+consisting of fields such as name, address, contact no., gender, Date of booking, date of 
+journey, name of passengers etc. Display the e –Ticket.-->
+<!DOCTYPE html>
+<html ng-app="ticketApp">
+<head>
+    <title>E-Ticket Booking</title>
+    <script src="angular.min.js"></script>
+</head>
+<body ng-controller="TicketController">
+   
+
+<div ng-show="!showTicket">
+    <h1>E-Ticket Booking</h1>
+    <form ng-submit="bookTicket()">
+        <label>Name:</label>
+        <input type="text" ng-model="name" required><br>
+
+        <label>Address:</label>
+        <input type="text" ng-model="address" required><br>
+
+        <label>Contact No:</label>
+        <input type="number" ng-model="contactNo" required><br>
+
+        <label>Gender:</label>
+        <input type="radio" ng-model="gender" value="Male">Male<br>
+        <input type="radio" ng-model="gender" value="Female">Female<br>
+
+        <label>Date of Booking:</label>
+        <input type="text" date="dd/mm/yy" ng-model="dateOfBooking" required><br>
+
+        <label>Date of Journey:</label>
+        <input type="text" date="dd/mm/yy"  ng-model="dateOfJourney" required><br>
+
+        <label>Name of Passengers:</label>
+        <textarea ng-model="passengerNames" required></textarea><br>
+
+        <button type="submit">Book Ticket</button>
+    </form>
+</div>
+
+<div ng-show="showTicket">
+    <h1>e-Ticket</h1>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Address:</strong> {{ address }}</p>
+    <p><strong>Contact No:</strong> {{ contactNo }}</p>
+    <p><strong>Gender:</strong> {{ gender }}</p>
+    <p><strong>Date of Booking:</strong> {{ dateOfBooking }}</p>
+    <p><strong>Date of Journey:</strong> {{ dateOfJourney }}</p>
+    <p><strong>Name of Passengers:</strong> {{ passengerNames }}</p>
+</div>
+
+<script>
+    // app.js
+angular.module('ticketApp', [])
+    .controller('TicketController', function ($scope) {
+      //  $scope.formData = {};
+        $scope.showTicket = false;
+
+        $scope.bookTicket = function () {
+            
+            $scope.showTicket = true;
+        };
+    });
+
+</script>
+</body>
+</html>

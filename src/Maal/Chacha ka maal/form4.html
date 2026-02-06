@@ -1,0 +1,62 @@
+<!-- Using angular js create a SPA that to accept the details such as name, mobile number, pin-code and email address and make validation. Name should contain character only, mobile 
+number should contain only 10 digit, Pin code should contain only 6 digit, email id should 
+contain only one @, . Symbol-->
+<!DOCTYPE html>
+<html ng-app="validationApp">
+<head>
+    <title>AngularJS Validation Example</title>
+    <script src="angular.min.js"></script>
+    
+</head>
+<body>
+    <div ng-controller="ValidationController">
+       
+        <div ng-show="!showform">
+        <form name="userForm" ng-submit="submitForm()" novalidate>
+            <label>Name:</label>
+            <input type="text" name="name" ng-model="name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+            <div ng-show="userForm.name.$touched && userForm.name.$error.pattern" class="error">Name should contain only characters.</div>
+            
+            <label>Mobile Number:</label>
+            <input type="text" name="mobile" ng-model="mobile" ng-pattern="/^\d{10}$/" required>
+            <div ng-show="userForm.mobile.$touched && userForm.mobile.$error.pattern" class="error">Mobile number should contain exactly 10 digits.</div>
+            
+            <label>Pin Code:</label>
+            <input type="text" name="pincode" ng-model="pincode" ng-pattern="/^\d{6}$/" required>
+            <div ng-show="userForm.pincode.$touched && userForm.pincode.$error.pattern" class="error">Pin code should contain exactly 6 digits.</div>
+            
+            <label>Email Address:</label>
+            <input type="email" name="email" ng-model="email" required>
+            <div ng-show="userForm.email.$touched && userForm.email.$error.email" class="error">Invalid email format.</div>
+            
+            <button type="submit" ng-disabled="userForm.$invalid">Submit</button>
+        </form>
+    </div>
+<div ng-show="showform">
+    <h1>Employee Information </h1>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Mobile Number:</strong> {{ mobile}}</p>
+    <p><strong>Pincode:</strong> {{ pincode }}</p>
+    <p><strong>Email Address:</strong> {{ email }}</p>
+  
+</div>
+
+</body>
+</html>
+
+<script>
+   var app = angular.module('validationApp', []);
+
+app.controller('ValidationController', function($scope) {
+    $scope.showform= false;
+
+    $scope.submitForm = function() {
+        if ($scope.userForm.$valid) {
+            alert('Form submitted successfully!');
+            
+        }
+        $scope.showform = true;
+    };
+});
+
+</script>

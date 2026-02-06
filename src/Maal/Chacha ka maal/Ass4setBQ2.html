@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Student Search</title>
+  <script src="angular.min.js"></script>
+</head>
+<body ng-controller="StudentController">
+
+  <h1>Student Search</h1>
+
+  <input type="text" ng-model="searchName" placeholder="Enter student name">
+  <br><br>
+  
+  <table>
+    <tr>
+      <th>Student Name</th>
+      <th>Age</th>
+      <th>Grade</th>
+    </tr>
+    <tr ng-repeat="student in students | filter: searchName">
+      <td>{{ student.name }}</td>
+      <td>{{ student.age }}</td>
+      <td>{{ student.grade }}</td>
+    </tr>
+  </table>
+  
+  <script>
+    angular.module('myApp', [])
+      .controller('StudentController', function($scope) {
+        $scope.students = [
+          { name: 'John Doe', age: 18, grade: 'A' },
+          { name: 'Jane Smith', age: 17, grade: 'B' },
+          { name: 'Mike Johnson', age: 19, grade: 'A+' },
+          { name: 'Emily Davis', age: 18, grade: 'B+' },
+          { name: 'David Anderson', age: 17, grade: 'A-' },
+          { name: 'Sarah Wilson', age: 19, grade: 'B-' },
+          { name: 'Michael Brown', age: 18, grade: 'A' },
+          { name: 'Jessica Taylor', age: 17, grade: 'A+' },
+          { name: 'Daniel Miller', age: 19, grade: 'B+' },
+          { name: 'Amy Moore', age: 18, grade: 'A-' }
+        ];
+      });</script>
+</body>
+</html>
+  
+

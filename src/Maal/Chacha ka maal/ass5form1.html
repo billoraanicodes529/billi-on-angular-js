@@ -1,0 +1,65 @@
+<!--Write an angular JS Program to create student registration form and validate all fields-->
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Student Registration</title>
+  <script src="angular.min.js"></script>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body ng-controller="RegistrationController">
+
+  <h1>Student Registration</h1>
+
+  <form name="registrationForm" ng-submit="submitForm()" novalidate>
+
+    <label>First Name:</label>
+    <input type="text" name="firstName" ng-model="student.firstName" required>
+    <span class="error" ng-show="registrationForm.firstName.$dirty && registrationForm.firstName.$error.required">
+      First Name is required.
+    </span>
+    <br>
+
+
+    <label>Email:</label>
+    <input type="email" name="email" ng-model="student.email" required>
+    <span class="error" ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">
+      Email is required.
+    </span>
+    <span class="error" ng-show="registrationForm.email.$dirty && registrationForm.email.$error.email">
+      Invalid email format.
+    </span>
+    <br>
+      <label>Password:</label>
+    <input type="password" name="pswd" ng-model="student.pswd" required>
+    <span class="error" ng-show="registrationForm.password.$dirty && registrationForm.email.$error.required">
+      Password is required.
+    
+
+
+    <button type="submit">Register</button>
+
+  </form>
+
+  <script>
+    angular.module('myApp', [])
+      .controller('RegistrationController', function($scope) {
+        $scope.student = {};
+
+        $scope.submitForm = function() {
+          if ($scope.registrationForm.$valid) {
+            alert('Student registration successful!');
+           
+            
+          } else {
+            alert('Please fill in all required fields correctly.');
+          }
+        };
+      });
+  </script>
+
+</body>
+</html>

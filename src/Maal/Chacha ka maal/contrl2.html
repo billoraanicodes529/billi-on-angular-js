@@ -1,0 +1,159 @@
+<html> 
+ <head> 
+ <script src = "angular.min.js"> </script> 
+ </head> 
+ <body> 
+ <h2>Students Marks Details</h2> 
+ <div ng-app = "mainApp" ng-controller ="studentController">
+ 
+ <table border = "1"> 
+ <tr> <td>Enter first name:</td>  
+ <td colspan = 2 ><input type = "text" ng-model ="student.firstName"></td> 
+ </tr> 
+ 
+ <tr> <td>Enter last name: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="student.lastName"></td> 
+ </tr> 
+ 
+ <tr>
+    <td colspan="3"><h3>Enter Marks of Below Subjects</h3></td>
+</tr>
+ 
+ <tr> <td>Chemistry: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m1"></td> 
+ </tr>
+  <tr> <td>Physics: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m2"></td> 
+ </tr> 
+
+ <tr> <td>Maths: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m3"></td> 
+ </tr> 
+
+ <tr> <td>English: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m4"></td> 
+ </tr> 
+
+<tr> <td>Hindi: </td> 
+ <td colspan = 2> <input type = "text" ng-model ="marks.m5"></td> 
+ </tr> 
+</table> 
+
+<button ng-click="calculate()">Display</button>
+<br><br>
+
+
+<br><br>
+
+<table border="1" cellpadding="5" ng-if="total">
+    <tr>
+        <td colspan="3"><b>Marks Card</b></td>
+    </tr>
+        
+    <tr>
+        <td>Name</td>
+        <td colspan="2">{{student.firstName}} {{student.lastName}}</td>
+    </tr>
+    
+    <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+    </tr>
+    
+    <tr>
+        <td>Chemistry</td>
+        <td>{{marks.m1}}</td>
+    </tr>
+    
+    <tr>
+        <td>Physics</td>
+        <td>{{marks.m2}}</td>
+    </tr>
+    <tr>
+        <td>Maths</td>
+        <td>{{marks.m3}}</td>
+    </tr>
+    <tr>
+        <td>English</td>
+        <td>{{marks.m4}}</td>
+    </tr>
+    <tr>
+        <td>Hindi</td>
+        <td>{{marks.m5}}</td>
+    </tr>
+    
+     <tr>
+        <td><b>Total</b></td>
+        <td>{{total}}</td>
+    </tr>
+    
+     <tr>
+        <td><b>Percentage</b></td>
+        <td>{{percentage | number:2}}%</td>
+    </tr>
+    
+     <tr>
+        <td><b>Grade</b></td>
+        <td>{{grade}}</td>
+    </tr>
+    
+    </table>
+
+<script>
+    var app = angular.module("mainApp", []);
+
+    app.controller("studentController", function ($scope) {
+    
+      $scope.student = {
+            firstName: "Candace",
+            lastName: "Menace"
+        };
+        
+          $scope.marks = {
+            m1: 45,
+            m2: 56,
+            m3: 67,
+            m4: 89,
+            m5: 34
+        };
+        
+        $scope.calculate = function () {
+
+            var total =
+                parseInt($scope.marks.m1, 10) +
+                parseInt($scope.marks.m2, 10) +
+                parseInt($scope.marks.m3, 10) +
+                parseInt($scope.marks.m4, 10) +
+                parseInt($scope.marks.m5, 10);
+                
+                  $scope.total = total;
+            
+            $scope.percentage = (total / 500) * 100;
+            
+              if ($scope.percentage >= 90)
+                $scope.grade = "A";
+                
+                 else if ($scope.percentage >= 80)
+                   $scope.grade = "B";
+                
+                  else if ($scope.percentage >= 70)
+                    $scope.grade = "C";
+                
+                     else if ($scope.percentage >= 50)
+                       $scope.grade = "D";
+                
+                       else
+                        $scope.grade = "F";
+                        
+                                };
+    });
+</script>
+
+</body>
+</html>
+            
+
+
+    
+
+ 

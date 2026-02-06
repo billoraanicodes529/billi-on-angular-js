@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <title>AngularJS Filter Example SET A Question 3.</title>
+    <script src="angular.min.js"></script>
+    </head>
+<body>
+    <div ng-controller="FilterController">
+        <h2>Filter Items</h2>
+        
+        <label>Search:</label>
+        <input type="text" ng-model="searchText">
+         <ul>
+            <li ng-repeat="item in items | filter:searchText">{{ item }}</li>
+        </ul>
+    </div>
+</body>
+<script>
+var app = angular.module('filterApp', []);
+
+app.controller('FilterController', function($scope) {
+ $scope.items = [
+        'Apple',
+        'Banana',
+        'Orange',
+        'Grapes',
+        'Pineapple',
+        'Strawberry',
+        'Kiwi',
+        'Mango'
+    ];
+});
+</script>
+</html>
+        

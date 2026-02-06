@@ -1,0 +1,52 @@
+<!--Write an AngularJS Program to create a SPA (Single Page application) for Login System.-->
+<!DOCTYPE html>
+<html ng-app="loginApp">
+<head>
+    <title>AngularJS Login Example</title>
+    <script src="angular.min.js"></script>
+ 
+</head>
+<body>
+    <div ng-controller="LoginController">
+        <h2>Login Form</h2>
+        
+        <form name="loginForm" ng-submit="login()">
+            <label>Username:</label>
+            <input type="text" name="username" ng-model="username" required>
+            
+            <label>Password:</label>
+            <input type="password" name="password" ng-model="password" required>
+            
+            <button type="submit" ng-disabled="loginForm.$invalid">Login</button>
+        </form>
+        
+        <p ng-show="isLogged">Welcome, {{ username }}</p>
+        <p ng-show="!isLogged && hasTriedToLogin">Invalid credentials. Please try again.</p>
+    </div>
+</body>
+</html>
+
+<script>
+    var app = angular.module('loginApp', []);
+
+app.controller('LoginController', function($scope) {
+   
+    $scope.isLogged = false;
+   $scope.hasTriedToLogin = false;
+
+    // Simulated valid credentials
+    var validUsername = 'user@123';
+    var validPassword = 'user';
+
+    $scope.login = function() {
+        $scope.hasTriedToLogin = true;
+
+        if ($scope.username === validUsername && $scope.password === validPassword) {
+            $scope.isLogged = true;
+        } else {
+            $scope.isLogged = false;
+        }
+    };
+});
+
+</script>

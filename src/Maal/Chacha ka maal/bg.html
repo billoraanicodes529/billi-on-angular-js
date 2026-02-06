@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <script src="angular.min.js"></script>
+
+    <style>
+        .red {
+            background-color: red;
+            color: white;
+        }
+        .green {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="text-align:center;">
+
+    <h1 style="color:green;">AngularJS</h1>
+    <h3>Change background color using Directive</h3>
+
+    <button change-color class="red">
+        Click to change
+    </button>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.directive("changeColor", function () {
+            return {
+                restrict: "A",
+                link: function (scope, element) {
+                    element.on("click", function () {
+                        element.toggleClass("green");
+                        element.toggleClass("red");
+                    });
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>
+
